@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from "./container/Home";
 import SignUp from "./container/SignUp";
 import Login from "./container/Login";
+import logo from "./images/Title_MM_transparent.PNG"
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,11 +19,17 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <div className="login">
+              <div>
+                <img className="logSign_Logo" src={logo} />
+              </div>
               <Login />
             </div>
           </Route>
           <Route path="/signup">
             <div className="signup">
+              <div>
+                <img className="logSign_Logo" src={logo} />
+              </div>
               <SignUp />
             </div>
           </Route>
