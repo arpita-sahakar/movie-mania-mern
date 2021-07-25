@@ -7,10 +7,10 @@ import Login from "./container/Login";
 function App() {
   return (
     <>
-      <div className="signup">
+      <div className="loginSignup">
         <Login />
       </div>
-      <div className="signup">
+      <div className="loginSignup">
         <SignUp />
       </div>
       <div className="app">
