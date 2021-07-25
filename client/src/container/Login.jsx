@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
     submitBtn: {
-        marginTop: '20px',
+        marginTop: '40px',
+        marginBottom: "50px",
         backgroundColor: 'red',
         cursor: 'pointer',
         fontWeight: 900,
