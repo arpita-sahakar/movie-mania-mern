@@ -3,11 +3,41 @@ import './App.css';
 import Home from "./container/Home";
 import SignUp from "./container/SignUp";
 import Login from "./container/Login";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 function App() {
   return (
     <>
-      <div className="loginSignup">
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <div className="loginSignup">
+              <Login />
+            </div>
+          </Route>
+          <Route path="/signup">
+            <div className="loginSignup">
+              <SignUp />
+            </div>
+          </Route>
+          <Route path="/home">
+            <div className="app">
+              <Home />
+            </div>
+          </Route>
+        </Switch>
+      </Router>
+
+
+
+      {/* <div className="loginSignup">
         <Login />
       </div>
       <div className="loginSignup">
@@ -15,7 +45,7 @@ function App() {
       </div>
       <div className="app">
         <Home />
-      </div>
+      </div> */}
     </>
 
   );
