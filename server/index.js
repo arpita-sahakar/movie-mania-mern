@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-// import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 
 
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Connect to the Mongo DB
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb+srv://mongodbuser:mongodbpassword@cluster0.dbv79.mongodb.net/userCollection?retryWrites=true&w=majority",
+    process.env.MONGODB_URI || "mongodb+srv://mongodbuser:mongodbpassword@cluster0.dbv79.mongodb.net/movieManiaUser?retryWrites=true&w=majority",
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,
@@ -45,7 +45,7 @@ app.get("/api/config", (req, res) => {
     res.send("connected successfully..")
 });
 
-// app.use("/users", userRoutes);
+app.use("/users", userRoutes);
 
 // Start the API server
 app.listen(PORT, function () {

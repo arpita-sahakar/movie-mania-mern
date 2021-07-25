@@ -1,4 +1,4 @@
-import User from "../models/userModel";
+import User from "../models/userModel.js";
 
 // shows list of all users
 export const allUsers = async (req, res) => {
@@ -10,8 +10,8 @@ export const allUsers = async (req, res) => {
 export const login = async (req, res) => {
     // console.log(req.body);
     try {
-        // const loginUser = await User.find({ email: req.body.email, passWord: req.body.passWord });
-        const loginUser = await User.find(req.body);
+        const loginUser = await User.find({ email: req.body.email, passWord: req.body.passWord });
+        // const loginUser = await User.find(req.body);
         console.log(loginUser);
         if (loginUser.length === 0) {
             res.status(401).json({ message: "userId or password not found" })
