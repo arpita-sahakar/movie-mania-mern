@@ -59,7 +59,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography className="signUp_typography" component="h1" variant="h5">
-                    Sign in
+                    LogIn
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField className="signup_textField"
@@ -92,12 +92,12 @@ export default function SignIn() {
                         color="secondary"
                         className={classes.submitBtn}
                     >
-                        Sign In
+                        LogIn
                     </Button>
                     <Grid className="linkCsscontainer">
                         <Grid item>
                             <Link href="#" variant="body2" className="link_account">
-                                {"Already have an account? LogIn"}
+                                {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
                     </Grid>

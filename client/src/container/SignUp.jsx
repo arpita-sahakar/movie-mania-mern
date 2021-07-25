@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import "./SignUp.css";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 
 
@@ -56,7 +57,7 @@ export default function SignIn() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <VpnKeyIcon />
         </Avatar>
         <Typography className="signUp_typography" component="h1" variant="h5">
           Sign in
