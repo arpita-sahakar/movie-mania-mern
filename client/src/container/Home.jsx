@@ -4,19 +4,21 @@ import requests from '../requests';
 import Banner from "./Banner";
 import NavBar from './NavBar';
 
-function Home() {
+function Home({ logedInSignUpUser }) {
     return (
         <>
-            <NavBar />
+            <NavBar logedInSignUpUser={logedInSignUpUser} />
             <Banner netflixOriginalsUrl={requests.netflixOriginals} />
             <Row title="NETFLIX ORIGINALS" fetchUrl={requests.netflixOriginals} isLargeRow={true} />
-            {/* <Row title="trending" fetchUrl={requests.trending}/> */}
+
             <Row title="Top Rated" fetchUrl={requests.topRated} />
             <Row title="Action Movies" fetchUrl={requests.action} />
             <Row title="Comedy Movies" fetchUrl={requests.comedy} />
             <Row title="Horror Movies" fetchUrl={requests.horror} />
-            {/* <Row title="Romantic Movies" fetchUrl={requests.topRromanticated} /> */}
+
             <Row title="Documentries" fetchUrl={requests.documentries} />
+            {/* <Row title="trending" fetchUrl={requests.trending}/> */}
+            {/* <Row title="Romantic Movies" fetchUrl={requests.topRromanticated} /> */}
         </>
     )
 }

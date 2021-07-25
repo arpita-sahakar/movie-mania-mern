@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Login() {
+export default function Login({ setLogin, login }) {
     const classes = useStyles();
 
     return (
@@ -63,6 +63,7 @@ export default function Login() {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField className="signup_textField"
+                        onChange={e => setLogin({ ...login, email: e.target.value })}
                         variant="outlined"
                         margin="normal"
                         required
@@ -74,6 +75,7 @@ export default function Login() {
                         autoFocus
                     />
                     <TextField className="signup_textField"
+                        onChange={e => setLogin({ ...login, passWord: e.target.value })}
                         variant="outlined"
                         margin="normal"
                         required

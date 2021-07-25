@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px;
+  padding-bottom: 20px;
   height: 20px;
 
   display: flex;
@@ -13,13 +13,21 @@
 .NavLogo {
   position: fixed;
   left: 20px;
+  width: 135px;
+  object-fit: contain;
+}
+
+.NavUser {
+  position: fixed;
+  right: 200px;
   width: 40px;
   object-fit: contain;
+  color: white;
 }
 
 .profileLogo {
   position: fixed;
-  right: 20px;
-  width: 100px;
+  left: 140px;
+  width: 40px;
   object-fit: contain;
 }

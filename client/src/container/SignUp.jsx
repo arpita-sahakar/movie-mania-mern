@@ -14,6 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import "./SignUp.css";
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import AlertDisplay from './AlertDisplay.jsx';
 
 
 
@@ -49,61 +52,88 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({ setSignup, signup, setlogedInSignUpUser, setErrMsgs, errMsgs, loginVisible, setLoginVisible }) {
   const classes = useStyles();
 
-  return (
-    <Container className="signUp_container" component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <VpnKeyIcon />
-        </Avatar>
-        <Typography className="signUp_typography" component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField className="signup_textField"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField className="signup_textField"
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
+  let history = useHistory();
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submitBtn}
-          >
-            Sign In
-          </Button>
-          <Grid className="linkCsscontainer">
-            <Grid item>
-              <Link href="#" variant="body2" className="link_account">
-                {"Already have an account? LogIn"}
-              </Link>
+  const createUser = () => {
+    console.log("clicked");
+    axios.post("/users/signup", signup).then(res => {
+      console.log(res.data);
+      setlogedInSignUpUser(res.data.email)
+      history.push("/home")
+    }).catch(err => {
+      console.log(err.response.data);
+      setErrMsgs(err.response.data);
+      setLoginVisible(true);
+
+      setTimeout(() => {
+        setErrMsgs([]);
+        setLoginVisible(false);
+      }, 2000)
+    });
+
+  }
+
+  return (
+    <>
+      <AlertDisplay errMsgs={errMsgs} loginVisible={loginVisible} />
+      <Container className="signUp_container" component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <VpnKeyIcon />
+          </Avatar>
+          <Typography className="signUp_typography" component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField className="signup_textField"
+              onChange={e => setSignup({ ...signup, email: e.target.value })}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField className="signup_textField"
+              onChange={e => setSignup({ ...signup, passWord: e.target.value })}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+
+            <Button
+              type="button"
+              onClick={createUser}
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submitBtn}
+            >
+              Sign In
+            </Button>
+            <Grid className="linkCsscontainer">
+              <Grid item>
+                <Link href="#" variant="body2" className="link_account">
+                  {"Already have an account? LogIn"}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </>
   );
 }

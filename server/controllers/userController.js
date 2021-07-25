@@ -26,6 +26,7 @@ export const login = async (req, res) => {
 
 // user signup
 export const signUp = async (req, res) => {
+    console.log(req.body);
     try {
         const createUser = await User.create(req.body);
         res.status(201).json(createUser)

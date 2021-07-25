@@ -2,7 +2,8 @@ import './App.css';
 import Home from "./container/Home";
 import SignUp from "./container/SignUp";
 import Login from "./container/Login";
-import logo from "./images/Title_MM_transparent.PNG"
+import logo from "./images/Title_MM_transparent.PNG";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,13 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const [login, setLogin] = useState({ email: "", passWord: "" });
+  const [signup, setSignup] = useState({ email: "", passWord: "" });
+
+  const [logedInSignUpUser, setlogedInSignUpUser] = useState("");
+  const [errMsgs, setErrMsgs] = useState([]);
+  const [loginVisible, setLoginVisible] = useState(false);
+
   return (
     <>
       <Router>
@@ -22,7 +30,7 @@ function App() {
               <div>
                 <img className="logSign_Logo" src={logo} />
               </div>
-              <Login />
+              <Login login={login} setLogin={setLogin} />
             </div>
           </Route>
           <Route path="/signup">
@@ -30,12 +38,12 @@ function App() {
               <div>
                 <img className="logSign_Logo" src={logo} />
               </div>
-              <SignUp />
+              <SignUp signup={signup} setSignup={setSignup} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
             </div>
           </Route>
           <Route path="/home">
             <div className="app">
-              <Home />
+              <Home logedInSignUpUser={logedInSignUpUser} />
             </div>
           </Route>
         </Switch>
