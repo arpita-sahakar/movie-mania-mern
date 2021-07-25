@@ -1,0 +1,29 @@
+.nav{
+    position: fixed;
+    top : 0;
+    width: 100%;
+    padding : 20px;
+    height :20px;
+
+
+    display : flex;
+    justify-content: space-between;
+    background-color: #111;
+
+
+
+}
+
+.NavLogo{
+    position: fixed;
+    left:20px;
+    width :40px;
+    object-fit: contain;
+  }
+
+.profileLogo{
+    position: fixed;
+    right : 20px;
+    width :40px;
+    object-fit: contain;
+}

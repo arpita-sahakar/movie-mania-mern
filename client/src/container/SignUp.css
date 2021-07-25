@@ -1,0 +1,50 @@
+.signUp_container {
+    background-color: black;
+    margin: 0;
+}
+
+.signUp_typography {
+    color: white;
+}
+
+.signup_textField {
+    background-color: rgb(95, 95, 95);
+}
+
+.submit_btn {
+    margin-top: 20px;
+    background-color: red;
+    cursor: pointer;
+    font-weight: 900;
+    border-radius: 0.2vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.link_account:link {
+    color: white;
+}
+
+
+/* visited link */
+
+.link_account:visited {
+    color: white;
+}
+
+
+/* mouse over link */
+
+.link_account:hover {
+    color: hotpink;
+}
+
+
+/* selected link */
+
+.link_account:active {
+    color: blue;
+}
