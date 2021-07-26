@@ -4,6 +4,7 @@ import SignUp from "./container/SignUp";
 import Login from "./container/Login";
 import logo from "./images/Title_MM_transparent.PNG";
 import { useState } from "react";
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,10 @@ function App() {
   const [errMsgs, setErrMsgs] = useState([]);
   const [loginVisible, setLoginVisible] = useState(false);
 
+  useEffect(() => {
+    console.log(`I am logged in ${logedInSignUpUser}`)
+  }, [logedInSignUpUser])
+
   return (
     <>
       <Router>
@@ -30,7 +35,7 @@ function App() {
               <div>
                 <img className="logSign_Logo" src={logo} />
               </div>
-              <Login login={login} setLogin={setLogin} />
+              <Login login={login} setLogin={setLogin} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
             </div>
           </Route>
           <Route path="/signup">

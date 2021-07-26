@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import AlertDisplay from './AlertDisplay.jsx';
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./SignUp.css";
 
 
@@ -48,63 +51,88 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Login({ setLogin, login }) {
+export default function Login({ setLogin, login, setlogedInSignUpUser, setErrMsgs, errMsgs, setLoginVisible, loginVisible }) {
     const classes = useStyles();
+    let history = useHistory();
+
+    const LoginUser = () => {
+        axios.post("/users/login", login).then(res => {
+            console.log(res.data)
+            setlogedInSignUpUser(res.data.email);
+            history.push("/home")
+
+        }).catch(err => {
+            console.log("login err msg");
+            setErrMsgs([err.response.data.message]);
+            setLoginVisible(true);
+
+
+            setTimeout(() => {
+                setErrMsgs([]);
+                setLoginVisible(false);
+            }, 2000)
+
+        })
+    }
 
     return (
-        <Container className="signUp_container" component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography className="signUp_typography" component="h1" variant="h5">
-                    LogIn
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField className="signup_textField"
-                        onChange={e => setLogin({ ...login, email: e.target.value })}
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField className="signup_textField"
-                        onChange={e => setLogin({ ...login, passWord: e.target.value })}
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submitBtn}
-                    >
+        <>
+            <AlertDisplay errMsgs={errMsgs} loginVisible={loginVisible} />
+            <Container className="signUp_container" component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography className="signUp_typography" component="h1" variant="h5">
                         LogIn
-                    </Button>
-                    <Grid className="linkCsscontainer">
-                        <Grid item>
-                            <Link href="#" variant="body2" className="link_account">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <TextField className="signup_textField"
+                            onChange={e => setLogin({ ...login, email: e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField className="signup_textField"
+                            onChange={e => setLogin({ ...login, passWord: e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+
+                        <Button
+                            type="button"
+                            onClick={LoginUser}
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className={classes.submitBtn}
+                        >
+                            LogIn
+                        </Button>
+                        <Grid className="linkCsscontainer">
+                            <Grid item>
+                                <Link href="#" variant="body2" className="link_account">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                    </form>
+                </div>
+            </Container>
+        </>
     );
 }
