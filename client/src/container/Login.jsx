@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AlertDisplay from './AlertDisplay.jsx';
-import { useHistory } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignUp.css";
 
@@ -125,9 +125,9 @@ export default function Login({ setLogin, login, setlogedInSignUpUser, setErrMsg
                         </Button>
                         <Grid className="linkCsscontainer">
                             <Grid item>
-                                <Link href="#" variant="body2" className="link_account">
+                                <RouterLink to="/signup" className="link_account">
                                     {"Don't have an account? Sign Up"}
-                                </Link>
+                                </RouterLink>
                             </Grid>
                         </Grid>
                     </form>

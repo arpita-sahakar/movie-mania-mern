@@ -30,7 +30,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/" exact>
+          <Route path={["/", "/login"]} exact>
             <div className="login">
               <div>
                 <img className="logSign_Logo" src={logo} />
@@ -38,7 +38,7 @@ function App() {
               <Login login={login} setLogin={setLogin} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
             </div>
           </Route>
-          <Route path="/signup">
+          <Route path={["/signup"]} exact>
             <div className="signup">
               <div>
                 <img className="logSign_Logo" src={logo} />
@@ -46,7 +46,7 @@ function App() {
               <SignUp signup={signup} setSignup={setSignup} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
             </div>
           </Route>
-          <Route path="/home">
+          <Route path="/home" exact>
             <div className="app">
               <Home logedInSignUpUser={logedInSignUpUser} />
             </div>

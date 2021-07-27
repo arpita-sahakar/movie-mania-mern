@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import "./SignUp.css";
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import { useHistory } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import AlertDisplay from './AlertDisplay.jsx';
 
@@ -126,9 +126,9 @@ export default function SignIn({ setSignup, signup, setlogedInSignUpUser, setErr
             </Button>
             <Grid className="linkCsscontainer">
               <Grid item>
-                <Link href="#" variant="body2" className="link_account">
+                <RouterLink to="/login" className="link_account">
                   {"Already have an account? LogIn"}
-                </Link>
+                </RouterLink>
               </Grid>
             </Grid>
           </form>
